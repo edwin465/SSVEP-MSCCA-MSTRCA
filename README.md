@@ -3,7 +3,8 @@
 This demo shows an example of using multi-stimulus canonical correlation analysis (MS-CCA) and multi-stimulus ensemble task-related component analysis (MS-eTRCA) SSVEP recognition. Besides, the extended CCA (eCCA) and the traditional eTRCA are also provided for comparison study.
 
 For the above algorithms, please refer the following papers for more details:
-msCCA: Wong, C. M., et al. (2019). Learning across multi-stimulus enhances target recognition methods in SSVEP-based BCIs. Journal of neural engineering.
+
+ms-CCA: Wong, C. M., et al. (2019). Learning across multi-stimulus enhances target recognition methods in SSVEP-based BCIs. Journal of neural engineering.
 
 ms-eTRCA: Wong, C. M., et al. (2019). Learning across multi-stimulus enhances target recognition methods in SSVEP-based BCIs. Journal of neural engineering.
 
