@@ -19,6 +19,8 @@ This code is prepared by Chi Man Wong (chiman465@gmail.com)
 # Version
 v1.0: Date: 16 May 2020
 
+# Citation
+
 If you use this code for a publication, please cite the following papers
 
 @article{wong2020learning,
