@@ -16,7 +16,8 @@ In this example, most parameters (such as number of harmonics, time-window lengt
 
 This code is prepared by Chi Man Wong (chiman465@gmail.com)
 
-Date: 16 May 2020
+# Version
+v1.0: Date: 16 May 2020
 
 If you use this code for a publication, please cite the following papers
 
@@ -39,3 +40,6 @@ If you use this code for a publication, please cite the following papers
    
  }
 
+# Feedback
+
+If you find any mistakes, please let me know via chiman465@gmail.com.
