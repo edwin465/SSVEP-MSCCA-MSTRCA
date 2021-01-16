@@ -24,6 +24,7 @@ v1.0: Date: 16 May 2020
 If you use this code for a publication, please cite the following papers
 
 @article{wong2020learning,
+
    title={Learning across multi-stimulus enhances target recognition methods in SSVEP-based BCIs},
    
    author={Wong, Chi Man and Wan, Feng and Wang, Boyu and Wang, Ze and Nan, Wenya and Lao, Ka Fai and Mak, Peng Un and Vai, Mang I and Rosa, Agostinho},
