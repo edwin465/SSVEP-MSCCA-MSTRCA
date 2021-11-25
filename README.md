@@ -32,49 +32,29 @@ add if-else-end for selecting one specified dataset <br>
 ...
 
 # Citation
-
 If you use this code for a publication, please cite the following papers
 
-@article{wong2020learning,
-
-   title={Learning across multi-stimulus enhances target recognition methods in SSVEP-based BCIs},
-   
-   author={Wong, Chi Man and Wan, Feng and Wang, Boyu and Wang, Ze and Nan, Wenya and Lao, Ka Fai and Mak, Peng Un and Vai, Mang I and Rosa, Agostinho},
-   
-   journal={Journal of Neural Engineering},
-   
-   volume={17},
-   
-   number={1},
-   
-   pages={016026},
-   
-   year={2020},
-   
-   publisher={IOP Publishing}
-   
- }
+@article{wong2020learning,  
+   title={Learning across multi-stimulus enhances target recognition methods in SSVEP-based BCIs},  
+   author={Wong, Chi Man and Wan, Feng and Wang, Boyu and Wang, Ze and Nan, Wenya and Lao, Ka Fai and Mak, Peng Un and Vai, Mang I and Rosa, Agostinho},  
+   journal={Journal of Neural Engineering},  
+   volume={17},  
+   number={1},  
+   pages={016026},  
+   year={2020},  
+   publisher={IOP Publishing}  
+ }  
  
- @article{wong2020spatial,
- 
-  title={Spatial filtering in SSVEP-based BCIs: unified framework and new improvements},
-  
-  author={Wong, Chi Man and Wang, Boyu and Wang, Ze and Lao, Ka Fai and Rosa, Agostinho and Wan, Feng},
-  
-  journal={IEEE Transactions on Biomedical Engineering},
-  
-  volume={67},
-  
-  number={11},
-  
-  pages={3057--3072},
-  
-  year={2020},
-  
-  publisher={IEEE}
-  
-}
+ @article{wong2020spatial,<br> 
+  title={Spatial filtering in SSVEP-based BCIs: unified framework and new improvements},  
+  author={Wong, Chi Man and Wang, Boyu and Wang, Ze and Lao, Ka Fai and Rosa, Agostinho and Wan, Feng},  
+  journal={IEEE Transactions on Biomedical Engineering},  
+  volume={67},  
+  number={11},  
+  pages={3057--3072},  
+  year={2020},  
+  publisher={IEEE}  
+}  
 
 # Feedback
-
 If you find any mistakes, please let me know via chiman465@gmail.com.
