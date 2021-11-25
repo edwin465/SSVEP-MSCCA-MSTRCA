@@ -19,9 +19,16 @@ In this example, most parameters (such as number of harmonics, time-window lengt
 This code is prepared by Chi Man Wong (chiman465@gmail.com)
 
 # Version
-v1.0: compare cca, ecca, etrca, ms-ecca, ms-etrca (16 May 2020)
+v1.0: 
+compare cca, ecca, etrca, ms-ecca, ms-etrca (16 May 2020)
 
-v1.1: add TDCA for comparison (25 Nov 2021)
+v1.1: 
+add notch filter
+modify the bandpass filter design
+add ms-ecca+ms-etrca and TDCA for comparison (25 Nov 2021)
+
+# Result
+...
 
 # Citation
 
