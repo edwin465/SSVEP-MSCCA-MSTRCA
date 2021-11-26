@@ -28,7 +28,11 @@ modify the bandpass filter design<br>
 add ms-ecca+ms-etrca and TDCA for comparison <br>
 add if-else-end for selecting one specified dataset <br>
 
-# Result
+# Preliminary results
+Parameter setting:  
+1) dataset_no=1; is_center_std=0; min_length=0.3; max_length=0.3; enable_bit=[1 1 1 1 1];  
+...
+2) dataset_no=2; is_center_std=0; min_length=0.3; max_length=0.3; enable_bit=[1 1 1 1 1];  
 ...
 
 # Citation
