@@ -1,13 +1,13 @@
 %% Demo of multi-stimulus CCA or TRCA for SSVEP Recognition %%%
 % In this code, we provide an example of using multi-stimulus canonical
 % correlation analysis (msCCA) and for the ensemble task-related component
-% analysis (eTRCA) SSVEP recognition. Besides, the extended CCA (eCCA) and
+% analysis (eTRCA) SSVEP recognition. Besides, the extended CCA (eCCA) and 
 % the traditional eTRCA are also provided for comparison study.
 % For the above algorithms, please refer the following papers for
 % more details:
 % msCCA: Wong, C. M., et al. (2019). Learning across multi-stimulus enhances target recognition methods in SSVEP-based BCIs. Journal of neural engineering.
 % ms-eTRCA: Wong, C. M., et al. (2019). Learning across multi-stimulus enhances target recognition methods in SSVEP-based BCIs. Journal of neural engineering.
-% eCCA: Chen, X., et al. (2015). High-speed spelling with a noninvasive brain¡Vcomputer interface. Proceedings of the national academy of sciences, 112(44), E6058-E6067.
+% eCCA: Chen, X., et al. (2015). High-speed spelling with a noninvasive brain?Vcomputer interface. Proceedings of the national academy of sciences, 112(44), E6058-E6067.
 % eTRCA: Nakanishi, M., et al. (2017). Enhancing detection of SSVEPs for a high-speed brain speller using task-related component analysis. IEEE Transactions on Biomedical Engineering, 65(1), 104-112.
 
 % In this example, most parameters (such as number of harmonics, time-window lengths and number
@@ -39,13 +39,13 @@
 clear all;
 close all;
 % Please download the SSVEP benchmark dataset for this code
-% Wang, Y., et al. (2016). A benchmark dataset for SSVEP-based brain¡Vcomputer interfaces. IEEE Transactions on Neural Systems and Rehabilitation Engineering, 25(10), 1746-1752.
+% Wang, Y., et al. (2016). A benchmark dataset for SSVEP-based brain-computer interfaces. IEEE Transactions on Neural Systems and Rehabilitation Engineering, 25(10), 1746-1752.
 % Then indicate where the directory of the dataset is :
-% str_dir=cd; % Directory of the SSVEP Dataset (Change it if necessary)
-addpath('..\mytoolbox\');
+
+% addpath('..\mytoolbox\');
 Fs=250; % sample rate
 
-dataset_no=2;
+dataset_no=1;
 if dataset_no==1
     str_dir='..\Tsinghua dataset 2016\';
     num_of_wn=4;                        % for TDCA
@@ -57,11 +57,10 @@ if dataset_no==1
     num_of_trials=5;                    % Number of training trials (1<=num_of_trials<=5)
     pha_val=[0 0.5 1 1.5 0 0.5 1 1.5 0 0.5 1 1.5 0 0.5 1 1.5 0 0.5 1 1.5 ...
         0 0.5 1 1.5 0 0.5 1 1.5 0 0.5 1 1.5 0 0.5 1 1.5 0 0.5 1 1.5]*pi;
-    sti_f=[8:0.2:15.8];
+    sti_f=[8.0:1:15.0, 8.2:1:15.2,8.4:1:15.4,8.6:1:15.6,8.8:1:15.8];
     n_sti=length(sti_f);                     % number of stimulus frequencies
     [~,target_order]=sort(sti_f);
-    sti_f=sti_f(target_order);
-    pha_val=pha_val(target_order);
+    sti_f=sti_f(target_order);   
 elseif dataset_no==2
     str_dir='..\BETA SSVEP dataset\';
     num_of_wn=4;                        % for TDCA
@@ -76,8 +75,7 @@ elseif dataset_no==2
     sti_f=[8.6:0.2:15.8,8.0 8.2 8.4];
     n_sti=length(sti_f);                     % number of stimulus frequencies
     [~,target_order]=sort(sti_f);
-    sti_f=sti_f(target_order);
-    pha_val=pha_val(target_order);
+    sti_f=sti_f(target_order);    
 else
     str_dir=cd;                         % exampleData.mat
     ch_used=[1:9];
@@ -86,9 +84,9 @@ else
         0 0.5 1 1.5 0 0.5 1 1.5 0 0.5 1 1.5 0 0.5 1 1.5 0 0.5 1 1.5]*pi;
     sti_f=[8:0.2:15.8];
     n_sti=length(sti_f);                     % number of stimulus frequencies
-    [~,target_order]=sort(sti_f);
-    sti_f=sti_f(target_order);
-    pha_val=pha_val(target_order);
+    temp=reshape([1:40],8,5);
+    temp=temp';
+    target_order=temp(:)';  
 end
 
 
@@ -101,12 +99,12 @@ num_of_subbands=5;                  % for filter bank analysis
 FB_coef0=[1:num_of_subbands].^(-1.25)+0.25; % for filter bank analysis
 
 % About the above parameter, please check the related paper:
-% Chen, X., et al. (2015). Filter bank canonical correlation analysis for implementing a high-speed SSVEP-based brain¡Vcomputer interface. Journal of neural engineering, 12(4), 046008.
+% Chen, X., et al. (2015). Filter bank canonical correlation analysis for implementing a high-speed SSVEP-based brain?Vcomputer interface. Journal of neural engineering, 12(4), 046008.
 
 % time-window length (min_length:delta_t:max_length)
-min_length=0.3;
+min_length=0.4;
 delta_t=0.1;
-max_length=0.3;                     % [min_length:delta_t:max_length]
+max_length=0.4;                     % [min_length:delta_t:max_length]
 
 enable_bit=[1 1 1 1 1];             % Select the algorithms: bit 1: eCCA, bit 2: ms-eCCA, bit 3: eTRCA, bit 4: ms-eTRCA, bit 5: TDCA, e.g., enable_bit=[1 1 1 1 1]; -> select all four algorithms
 is_center_std=0;                    % 0: without , 1: with (zero mean, and unity standard deviation)
