@@ -32,12 +32,14 @@ add if-else-end for selecting one specified dataset <br>
 Parameter setting:  
 1) dataset_no=1; is_center_std=0; min_length=0.3; max_length=1.0; enable_bit=[1 1 1 1 1];  
 
+![result1](https://github.com/edwin465/SSVEP-MSCCA-MSTRCA/blob/master/result1.png)
 
+From the above figure (x-axis: data length, y-axis: accuracy), it seems that the TDCA achieves the highest performance (especially with the short data length). The ms-eCCA+ms-eTRCA is a little bit less than the TDCA. 
 
-From the above figure, it seems that the TDCA achieves the highest performance (especially with the short data length). The ms-eCCA+ms-eTRCA is a little bit less than the TDCA. 
-
-2) dataset_no=2; is_center_std=0; min_length=0.3; max_length=0.3; enable_bit=[1 1 1 1 1];  
+2) dataset_no=2; is_center_std=0; min_length=0.3; max_length=1.0; enable_bit=[1 1 1 1 1];  
 ...
+
+From the above figure (x-axis: data length, y-axis: accuracy), it seems that the ms-eCCA+ms-eTRCA achieves the highest performance in most cases. 
 
 # Citation
 If you use this code for a publication, please cite the following papers
