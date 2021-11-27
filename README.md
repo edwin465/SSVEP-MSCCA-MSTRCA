@@ -37,9 +37,12 @@ Parameter setting:
 From the above figure (x-axis: data length, y-axis: accuracy), it seems that the TDCA achieves the highest performance (especially with the short data length). The ms-eCCA+ms-eTRCA is a little bit less than the TDCA. 
 
 2) dataset_no=2; is_center_std=0; min_length=0.3; max_length=1.0; enable_bit=[1 1 1 1 1];  
-...
 
-From the above figure (x-axis: data length, y-axis: accuracy), it seems that the ms-eCCA+ms-eTRCA achieves the highest performance in most cases. 
+![result2](https://github.com/edwin465/SSVEP-MSCCA-MSTRCA/blob/master/result2.png)
+
+From the above figure (x-axis: data length, y-axis: accuracy), it seems that the ms-eCCA+ms-eTRCA achieves the highest performance in most cases. Then the ms-eCCA looks also a bit better than the TDCA. Maybe the ms-eCCA+ms-eTRCA, ms-eCCA, and the TDCA provide the similar performance in statistical. Maybe later we will test them using paired t-test.  
+
+According to the existing results, it can be found that in different datasets, the best algorithm is different. No algorithm can always perform the best.
 
 # Citation
 If you use this code for a publication, please cite the following papers
