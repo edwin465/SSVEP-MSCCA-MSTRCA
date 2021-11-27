@@ -26,7 +26,7 @@ v1.1: (25 Nov 2021)<br>
 add notch filter<br>
 modify the bandpass filter design<br>
 add ms-ecca+ms-etrca and TDCA for comparison <br>
-add if-else-end for selecting one specified dataset <br>
+add if-else-end for selecting one specified dataset (tsinghua benchmark dataset or BETA dataset) <br>
 
 # Preliminary results
 Parameter setting:  
