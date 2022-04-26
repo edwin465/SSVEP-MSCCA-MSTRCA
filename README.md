@@ -28,6 +28,9 @@ modify the bandpass filter design<br>
 add ms-ecca+ms-etrca and TDCA for comparison <br>
 add if-else-end for selecting one specified dataset (tsinghua benchmark dataset or BETA dataset) <br>
 
+v1.2: (26 Apr 2022)<br>
+The same data length in the pre-processing, training, and testing <br>
+
 # Preliminary results
 Parameter setting:  
 1) dataset_no=1; is_center_std=0; min_length=0.3; max_length=1.0; enable_bit=[1 1 1 1 1];  
