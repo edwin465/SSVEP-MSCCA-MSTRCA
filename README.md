@@ -35,9 +35,13 @@ The same data length in the pre-processing, training, and testing <br>
 Parameter setting:  
 1) dataset_no=1; is_center_std=0; min_length=0.3; max_length=1.0; enable_bit=[1 1 1 1 1];  
 
-![result1](https://github.com/edwin465/SSVEP-MSCCA-MSTRCA/blob/master/result1.png)
+We use 'plot_results.m' to plot the results.
 
-From the above figure (x-axis: data length, y-axis: accuracy), it seems that the TDCA achieves the highest performance (especially with the short data length). The ms-eCCA+ms-eTRCA is a little bit less than the TDCA. 
+![result1a](https://github.com/edwin465/SSVEP-MSCCA-MSTRCA/blob/master/result1a.png)
+
+From the above figure (x-axis: data length, y-axis: accuracy), it seems that the TDCA achieves the highest performance (especially with the short data length). Meanwhile, the TDCA and the ms-eCCA+ms-eTRCA achieve similar performance, except Tw=0.3 and Tw=0.5.
+
+![result1b](https://github.com/edwin465/SSVEP-MSCCA-MSTRCA/blob/master/result1b.png)
 
 2) dataset_no=2; is_center_std=0; min_length=0.3; max_length=1.0; enable_bit=[1 1 1 1 1];  
 
