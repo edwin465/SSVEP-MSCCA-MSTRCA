@@ -94,12 +94,12 @@ FB_coef0=[1:num_of_subbands].^(-1.25)+0.25; % for filter bank analysis
 % time-window length (min_length:delta_t:max_length)
 min_length=0.3;
 delta_t=0.1;
-max_length=0.3;                     % [min_length:delta_t:max_length]
+max_length=1.0;                     % [min_length:delta_t:max_length]
 
 TW = min_length:delta_t:max_length;
 TW_p = round(TW*Fs);
 enable_bit=[1 1 1 1 1];             % Select the algorithms: bit 1: eCCA, bit 2: ms-eCCA, bit 3: eTRCA, bit 4: ms-eTRCA, bit 5: TDCA, e.g., enable_bit=[1 1 1 1 1]; -> select all four algorithms
-is_center_std=1;                    % 0: without , 1: with (zero mean, and unity standard deviation)
+is_center_std=0;                    % 0: without , 1: with (zero mean, and unity standard deviation)
 
 % Chebyshev Type I filter design
 for k=1:num_of_subbands
@@ -119,7 +119,8 @@ seed = RandStream('mt19937ar','Seed','shuffle');
 for tw_length=1:length(TW)
     sig_len=TW_p(tw_length);
     
-    for sn=1:num_of_subj
+    clear y_sb    
+    for sn=1:num_of_subj 
         tic
         if dataset_no==1
             load(strcat(str_dir,'S',num2str(sn),'.mat'));
@@ -138,14 +139,22 @@ for tw_length=1:length(TW)
         [d1_,d2_,d3_,d4_]=size(eeg);
         d1=d3_;d2=d4_;d3=d1_;d4=d2_;
         no_of_class=d1;
+        n_ch = d3;
         % d1: num of stimuli
         % d2: num of trials
         % d3: num of channels % Pz, PO5, PO3, POz, PO4, PO6, O1, Oz, O2
         % d4: num of sampling points
+        if sn==1
+            for sub_band=1:num_of_subbands
+                subband_signal(sub_band).SSVEPdata = zeros(n_ch,sig_len,d2,d1);
+                subband_signal(sub_band).signal_template = zeros(n_ch,sig_len,d1);
+            end
+        end
+        
         for i=1:1:d1
             for j=1:1:d2
                 y0=reshape(eeg(:,:,i,j),d3,d4);
-                SSVEPdata(:,:,j,i)=reshape(y0,d3,d4,1,1);
+%                 SSVEPdata(:,:,j,i)=reshape(y0,d3,d4,1,1);
                 y = filtfilt(notchB, notchA, y0.'); %notch
                 y = y.';
                 for sub_band=1:num_of_subbands
@@ -163,10 +172,10 @@ for tw_length=1:length(TW)
         
         clear eeg
         %% Initialization
-        n_ch=size(SSVEPdata,1);
+%         n_ch=size(SSVEPdata,1);
         n_run=d2;                                % number of used runs
         
-        SSVEPdata=SSVEPdata(:,:,:,target_order);
+%         SSVEPdata=SSVEPdata(:,:,:,target_order);
         for sub_band=1:num_of_subbands
             subband_signal(sub_band).SSVEPdata=subband_signal(sub_band).SSVEPdata(:,:,:,target_order); % To sort the orders of the data as 8.0, 8.2, 8.4, ..., 15.8 Hz
         end        
@@ -201,16 +210,16 @@ for tw_length=1:length(TW)
             idx_testdata(seq1)=[];
             
             for i=1:no_of_class
-                if length(idx_traindata)>1
-                    signal_template(i,:,:)=mean(SSVEPdata(:,:,idx_traindata,i),3);
-                else
-                    signal_template(i,:,:)=SSVEPdata(:,:,idx_traindata,i);
-                end
+%                 if length(idx_traindata)>1
+%                     signal_template(i,:,:)=mean(SSVEPdata(:,:,idx_traindata,i),3);
+%                 else
+%                     signal_template(i,:,:)=SSVEPdata(:,:,idx_traindata,i);
+%                 end
                 for k=1:num_of_subbands
                     if length(idx_traindata)>1
-                        subband_signal(k).signal_template(i,:,:)=mean(subband_signal(k).SSVEPdata(:,:,idx_traindata,i),3);
+                        subband_signal(k).signal_template(:,:,i)=mean(subband_signal(k).SSVEPdata(:,:,idx_traindata,i),3);
                     else
-                        subband_signal(k).signal_template(i,:,:)=subband_signal(k).SSVEPdata(:,:,idx_traindata,i);
+                        subband_signal(k).signal_template(:,:,i)=subband_signal(k).SSVEPdata(:,:,idx_traindata,i);
                     end
                 end
                 
@@ -287,7 +296,7 @@ for tw_length=1:length(TW)
                             test_signal=test_signal./(std(test_signal')'*ones(1,length(test_signal)));
                         end
                         for j=1:no_of_class
-                            template=reshape(subband_signal(sub_band).signal_template(j,:,[1:sig_len]),d3,sig_len);
+                            template=subband_signal(sub_band).signal_template(:,[1:sig_len],j);
                             if (is_center_std==1)
                                 template=template-mean(template,2)*ones(1,length(template));
                                 template=template./(std(template')'*ones(1,length(template)));
@@ -325,7 +334,7 @@ for tw_length=1:length(TW)
                                     
                                     % Concatenation of the templates (or sine-cosine references)
                                     for n_temp=1:num_of_signal_templates
-                                        template0=reshape(subband_signal(sub_band).signal_template(template_seq(n_temp),:,1:sig_len),d3,sig_len);
+                                        template0=subband_signal(sub_band).signal_template(:,1:sig_len,template_seq(n_temp));
                                         if (is_center_std==1)
                                             template0=template0-mean(template0,2)*ones(1,length(template0));
                                             template0=template0./(std(template0')'*ones(1,length(template0)));
@@ -528,13 +537,15 @@ for tw_length=1:length(TW)
         toc
         accuracy=100*n_correct/n_sti/n_run/length(idx_testdata)
         all_sub_acc(tw_length,sn,:)=accuracy;
-        % column 1: CCA
-        % column 2: eCCA
-        % column 3: ms-eCCA
-        % column 4: eTRCA
-        % column 5: ms-eTRCA
-        % column 6: ms-eCCA + ms-eTRCA
-        % column 7: TDCA
+        % all_sub_acc(:,:,i)
+        % i= 1: CCA
+        % i= 2: eCCA
+        % i= 3: ms-eCCA
+        % i= 4: eTRCA
+        % i= 5: ms-eTRCA
+        % i= 6: ms-eCCA + ms-eTRCA
+        % i= 7: TDCA
         disp(sn)
+        save save_all_sub_acc_th.mat all_sub_acc
     end
 end
