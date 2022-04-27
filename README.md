@@ -41,7 +41,7 @@ We use 'plot_results.m' to plot the results.
 
 From the above figure (x-axis: data length, y-axis: accuracy), it seems that the TDCA achieves the highest performance (especially with the short data length). Meanwhile, the TDCA and the ms-eCCA+ms-eTRCA achieve similar performance, except Tw=0.3 and Tw=0.5.
 
-![result1b](https://github.com/edwin465/SSVEP-MSCCA-MSTRCA/blob/master/result1a.png)
+![result1b](https://github.com/edwin465/SSVEP-MSCCA-MSTRCA/blob/master/result1b_.png)
 
 2) dataset_no=2; is_center_std=0; min_length=0.3; max_length=1.0; enable_bit=[1 1 1 1 1];  
 
