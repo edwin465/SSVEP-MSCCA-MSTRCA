@@ -2,9 +2,17 @@ close all
 clear all
 addpath('..\mytoolbox');
 
-load save_all_sub_acc_th.mat
+dataset_no=2;
 sel_index=[2:7];
-num_of_sub=35;num_of_method=length(sel_index);num_of_tw=8;
+if dataset_no==1
+    load save_all_sub_acc_th.mat
+    num_of_sub=35;num_of_method=length(sel_index);num_of_tw=8;
+elseif dataset_no==2
+    load save_all_sub_acc_beta.mat
+    num_of_sub=70;num_of_method=length(sel_index);num_of_tw=8;
+else
+end
+
 data=[];
 for m=1:num_of_method
     A = squeeze(all_sub_acc(:,:,sel_index(m)));
