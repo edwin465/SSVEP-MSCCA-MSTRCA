@@ -546,6 +546,11 @@ for tw_length=1:length(TW)
         % i= 6: ms-eCCA + ms-eTRCA
         % i= 7: TDCA
         disp(sn)
-        save save_all_sub_acc_th.mat all_sub_acc
+        if dataset_no==1
+           save save_all_sub_acc_th.mat all_sub_acc
+        elseif dataset_no==2
+           save save_all_sub_acc_beta.mat all_sub_acc
+        else
+        end
     end
 end
