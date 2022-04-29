@@ -45,6 +45,8 @@ From the above figure (x-axis: data length, y-axis: accuracy), it seems that the
 
 2) dataset_no=2; is_center_std=0; min_length=0.3; max_length=1.0; enable_bit=[1 1 1 1 1];  
 
+We use 'plot_results.m' to plot the results.
+
 ![result2](https://github.com/edwin465/SSVEP-MSCCA-MSTRCA/blob/master/result2a.png)
 
 From the above figure (x-axis: data length, y-axis: accuracy), it seems that the ms-eCCA+ms-eTRCA achieves the highest performance in most cases. Then the ms-eCCA looks also a bit better than the TDCA. The following figure shows that the ms-eCCA+ms-eTRCA achieve a better performance than the TDCA under different Tw.
